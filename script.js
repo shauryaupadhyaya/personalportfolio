@@ -22,3 +22,17 @@ function startTyping(){
 
     setTimeout(type, 500)
 }
+
+// about me animation
+const aboutContent = document.querySelector('.about-content');
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if(entry.isIntersecting){
+            entry.target.classList.add('show');
+        }
+    },
+        { threshold: 0.3 }
+    );
+});
+
+observer.observe(aboutContent)

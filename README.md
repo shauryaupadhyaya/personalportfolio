@@ -1,4 +1,4 @@
-#personal portfolio
+# personal portfolio
 
-##updates
+## updates
 - home page created with loader and typewriter effect for name
