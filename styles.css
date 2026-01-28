@@ -47,6 +47,7 @@ body{
     justify-content: center;
     position: relative;
     box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+    z-index: 1000;
 }
 
 .menu-toggle span{
@@ -74,36 +75,70 @@ body{
 }
 
 .menu{
-    position: absolute;
-    top: 70px;
+    position: fixed;
+    top: 0;
     right: 0;
-    background: rgba(20,20,30,0.95);
-    backdrop-filter: blur(15px);
-    border-radius: 16px;
-    padding: 1.5rem;
-    min-width: 150px;
-    opacity: 0;
-    transform: translateY(-20px) scale(0.9);
-    pointer-events: none;
-    transition: all 0.4s ease;
+    height: 100vh;
+    width: 70%;
+    max-width: 320px;
+    background: #0b0b0f;
+    padding: 5rem 2.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5rem;
+    transform: translateX(100%);
+    transition: transform 0.5s ease;
+    z-index: 900;
+}
+
+.menu::before{
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.55);
+    z-index: -1;
 }
 
 .navbar.open .menu{
-    opacity: 1;
-    transform: translateY(0) scale(1);
-    pointer-events: auto;
+    transform: translateX(0);
 }
 
 .menu a{
-    display: block;
-    padding: 0.8rem 0;
-    color: white;
+    color: rgba(255, 255, 255, 0.65);
+    font-size: 1.8rem;
     text-decoration: none;
-    font-size: 1.1rem;
+    position: relative;
+    width: fit-content;
+    cursor: pointer;
+}
+
+.menu a::after{
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    transform: scaleX(0);
+    transform-origin: left center;
+    transition: transform 0.3s ease;
 }
 
 .menu a:hover{
-    opacity: 0.7;
+    color: white;
+}
+
+.menu a:hover::after{
+    transform: scaleX(1);
+}
+
+.menu a.active{
+    color: white;
+}
+
+.menu a.active::after{
+    transform: scaleX(1);
 }
 
 /* loader */

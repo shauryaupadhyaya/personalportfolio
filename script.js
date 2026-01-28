@@ -16,11 +16,20 @@ menuBtn.addEventListener('click', () => {
     navbar.classList.toggle('open');
 });
 
+window.addEventListener('DOMContentLoaded', () => {
+    menuLinks[0].classList.add('active');
+})
+
 menuLinks.forEach(link => {
     link.addEventListener('click', () => {
         const page = link.dataset.page;
+
         pages.forEach(p => p.classList.remove('active'));
         document.getElementById(`${page}-page`).classList.add('active');
+
+        menuLinks.forEach(l => l.classList.remove('active'));
+        link.classList.add('active');
+
         navbar.classList.remove('open');
     });
 });
