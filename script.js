@@ -6,6 +6,26 @@ window.addEventListener('load', () => {
     }, 2000);
 });
 
+// navbar
+const navbar = document.getElementById('navbar');
+const menuBtn = document.getElementById('menuBtn');
+const menuLinks = document.querySelectorAll('.menu a');
+const pages = document.querySelectorAll('.page');
+
+menuBtn.addEventListener('click', () => {
+    navbar.classList.toggle('open');
+});
+
+menuLinks.forEach(link => {
+    link.addEventListener('click', () => {
+        const page = link.dataset.page;
+        pages.forEach(p => p.classList.remove('active'));
+        document.getElementById(`${page}-page`).classList.add('active');
+        navbar.classList.remove('open');
+    });
+});
+
+// typing animation
 function startTyping(){
     const text = "Shaurya";
     const typedElement = document.getElementById('typed-name');

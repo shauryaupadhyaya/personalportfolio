@@ -11,6 +11,101 @@ body{
     overflow-x: hidden;
 }
 
+/* pages */
+.page{
+    min-height: 100vh;
+    display: none;
+    overflow: hidden;
+}
+
+.page.active{
+    display: block;
+}
+
+#about-page{
+    height: auto;
+    overflow-y: auto;
+}
+
+/* navbar */
+.navbar{
+    position: fixed;
+    top: 2rem;
+    right: 2rem;
+    z-index: 1000;
+}
+
+.menu-toggle{
+    width: 56px;
+    height: 56px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    background: linear-gradient(135deg, #667eea, #764ba2);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
+}
+
+.menu-toggle span{
+    position: absolute;
+    width: 22px;
+    height: 2px;
+    background: #fff;
+    transition: all 0.4s ease;
+}
+
+.menu-toggle span:nth-child(1){transform: translateY(-6px)}
+.menu-toggle span:nth-child(2){transform: translateY(0px)}
+.menu-toggle span:nth-child(3){transform: translateY(6px)}
+
+.navbar.open span:nth-child(1){
+    transform: rotate(45deg);
+}
+
+.navbar.open span:nth-child(2){
+    opacity: 0;
+}
+
+.navbar.open span:nth-child(3){
+    transform: rotate(-45deg)
+}
+
+.menu{
+    position: absolute;
+    top: 70px;
+    right: 0;
+    background: rgba(20,20,30,0.95);
+    backdrop-filter: blur(15px);
+    border-radius: 16px;
+    padding: 1.5rem;
+    min-width: 150px;
+    opacity: 0;
+    transform: translateY(-20px) scale(0.9);
+    pointer-events: none;
+    transition: all 0.4s ease;
+}
+
+.navbar.open .menu{
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    pointer-events: auto;
+}
+
+.menu a{
+    display: block;
+    padding: 0.8rem 0;
+    color: white;
+    text-decoration: none;
+    font-size: 1.1rem;
+}
+
+.menu a:hover{
+    opacity: 0.7;
+}
+
 /* loader */
 .loader-container{
     position: fixed;

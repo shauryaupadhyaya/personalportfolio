@@ -10,31 +10,47 @@
 <body>
     <div class="grain"></div>
 
+    <nav class="navbar" id="navbar">
+        <button class="menu-toggle" id="menuBtn">
+            <span></span>
+            <span></span>
+            <span></span>
+        </button>
+
+        <div class="menu" id="menu">
+            <a data-page="home">Home</a>
+            <a data-page="about">About</a>
+        </div>
+    </nav>
+
     <div class="loader-container" id="loader">
         <div class="loader"></div>
     </div>
 
-    <section class="home-section">
-        <div class="name-container">
-            <h1 class="name">
-                <span id="typed-name"></span><span class="cursor" id="cursor"></span>
-            </h1>
-            <p class="tagline">Developer • Student • Athelete</p>
-        </div>
-    </section>
+    <div class="page active" id="home-page">
+        <section class="home-section">
+            <div class="name-container">
+                <h1 class="name">
+                    <span id="typed-name"></span><span class="cursor" id="cursor"></span>
+                </h1>
+                <p class="tagline">Developer • Student • Athelete</p>
+            </div>
+        </section>
+    </div>
 
-    <section class="about-section">
-        <div class="about-content">
-            <h2>About Me</h2>
-            <p>
-                I am a student and developer who enjoys building clean and interactive
-            websites. I love learning new skills and working on projects that help
-            me grow. Besides coding, I also enjoy sports and hobbies.
-            </p>
-        </div>
-    </section>
+    <div class="page" id="about-page">
+        <section class="about-section">
+            <div class="about-content">
+                <h2>About Me</h2>
+                <p>
+                    I am a student and developer who enjoys building clean and interactive
+                    websites. I love learning new skills and working on projects that help
+                    me grow. Besides coding, I also enjoy sports and hobbies.
+                </p>
+            </div>
+        </section>
 
-    <section class="interests-section">
+        <section class="interests-section">
         <h2 class="interests-title">My Interests</h2>
         <div class="interests-container">
             <div class="interest" data-detail="i love playing football, visca barcaa">
@@ -86,6 +102,7 @@
             </div>            
         </div>
     </section>
+    </div>
 
     <script src="script.js"></script>
 </body>
