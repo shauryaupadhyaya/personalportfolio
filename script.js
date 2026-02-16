@@ -6,6 +6,35 @@ window.addEventListener('load', () => {
     }, 2000);
 });
 
+// theme feature
+const themeToggle = document.getElementById('theme-toggle');
+const html = document.documentElement;
+const moonIcon = document.getElementById('moonIcon');
+const sunIcon = document.getElementById('sunIcon');
+
+const currentTheme = localStorage.getItem('theme') || 'dark';
+html.setAttribute('data-theme', currentTheme);
+updateThemeIcon(currentTheme);
+
+themeToggle.addEventListener('click', function() {
+    const currentTheme = html.getAttribute('data-theme');
+    const newTheme = currentTheme === 'light' ? 'dark' : 'light';
+
+    html.setAttribute('data-theme', newTheme);
+    localStorage.setItem('theme', newTheme);
+    updateThemeIcon(newTheme);
+});
+
+function updateThemeIcon(theme){
+    if(theme === 'dark'){
+        moonIcon.style.display = 'block';
+        sunIcon.style.display = 'none';
+    } else{
+        moonIcon.style.display = 'none';
+        sunIcon.style.display = 'block';
+    }
+}
+
 // navbar
 const navbar = document.getElementById('navbar');
 const menuBtn = document.getElementById('menuBtn');
