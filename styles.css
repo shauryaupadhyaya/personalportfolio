@@ -4,6 +4,16 @@
     box-sizing: border-box;
 }
 
+::view-transition-old(root){
+    animation: none;
+    z-index: 1;
+}
+
+::view-transition-new(root){
+    animation: none;
+    z-index: 2;
+}
+
 :root{
     --bg-primary: #0a0a0a;
     --bg-secondary: #1a1a1a;
@@ -23,12 +33,6 @@
     --loader-bg-start: #667eea;
     --loader-bg-end: #764ba2;
     --theme-transition: 0.5s cubic-bezier(0.4,0,0.2,1);
-}
-
-*, *::before, *::after{
-    transition-property: background-color, color, border-color, box-shadow, filter;
-    transition-duration: 0.5s;
-    transition-timing-function: cubic-bezier(0.4,0,0.2,1);
 }
 
 [data-theme='light']{
@@ -56,7 +60,7 @@ body{
     background: var(--bg-primary);
     color: var(--text-primary);
     overflow-x: hidden;
-    transition: background-color 0.4s cubic-bezier(0.4,0,0.2,1), color 0.4s cubic-bezier(0.4,0,0.2,1);
+    transition: background-color var(--theme-transition), color var(--theme-transition);
 }
 
 /* pages */
@@ -181,7 +185,7 @@ body{
     flex-direction: column;
     gap: 2.5rem;
     transform: translateX(100%);
-    transition: transform 0.5s ease, background-color 0.4s cubic-bezier(0.4,0,0.2,1);
+    transition: transform var(--theme-transition), background-color var(--theme-transition);
     z-index: 900;
     border-left: 1px solid var(--border-color);
 }
@@ -192,7 +196,7 @@ body{
     inset: 0;
     background: rgba(0,0,0,0.55);
     z-index: -1;
-    transition: background-color 0.4s cubic-bezier(0.4,0,0.2,1);
+    transition: background-color var(--theme-transition);
 }
 
 [data-theme='light'] .menu::before{
@@ -285,6 +289,7 @@ body{
     background: linear-gradient(135deg, var(--bg-gradient-start) 0%, var(--bg-gradient-mid) 50%, var(--bg-gradient-end) 100%);
     position: relative;
     overflow: hidden;
+    transition: background var(--theme-transition);
 }
 
 .home-section::before{
@@ -297,7 +302,7 @@ body{
     bottom: -200px;
     left: -200px;
     animation: float 15s ease-in-out infinite reverse;
-    transition: opacity 0.4s ease;
+    transition: opacity var(--theme-transition);
 }
 
 [data-theme='light'] .home-section::before{
@@ -314,7 +319,7 @@ body{
     bottom: -200px;
     left: -200px;
     animation: float 15s ease-in-out infinite reverse;
-    transition: opacity 0.4s ease;
+    transition: opacity var(--theme-transition);
 }
 
 [data-theme='light'] .home-section::after{
@@ -375,7 +380,7 @@ body{
     opacity: 0;
     animation: fadeIn 1s ease forwards;
     animation-delay: 1.5s;
-    transition: color 0.4s ease;
+    transition: color var(--theme-transition);
 }
 
 @keyframes fadeIn{
@@ -392,7 +397,7 @@ body{
     opacity: 0.03;
     z-index: 100;
     background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
-    transition: opacity 0.4s ease;
+    transition: opacity var(--theme-transition);
 }
 
 [data-theme='light'] .grain{
@@ -407,7 +412,7 @@ body{
     justify-content: center;
     padding: 4rem 2rem;
     background: var(--bg-primary);
-    transition: background-color 0.4s cubic-bezier(0.4,0,0.2,1);
+    transition: background-color var(--theme-transition);
 }
 
 .about-content{
@@ -415,7 +420,7 @@ body{
     text-align: center;
     opacity: 0;
     transform: translateY(80px);
-    transition: all 1s ease;
+    transition: all 1s ease, color var(--theme-transition);
 }
 
 .about-content.show{
@@ -437,7 +442,7 @@ body{
     font-size: 1.1rem;
     line-height: 1.75;
     color: var(--text-secondary);
-    transition: color 0.4s ease;
+    transition: color var(--theme-transition);
 }
 
 /* interests section */
@@ -447,7 +452,7 @@ body{
     background: var(--bg-tertiary);
     position: relative;
     text-align: center;
-    transition: background-color 0.4s cubic-bezier(0.4,0,0.2,1);
+    transition: background-color var(--theme-transition);
 }
 
 .interests-title{
@@ -477,7 +482,7 @@ body{
     padding: 0;
     opacity: 0;
     cursor: pointer;
-    transition: all 0.8s ease;
+    transition: all 0.8s ease, color var(--theme-transition);
 }
 
 .interest:nth-child(odd){
@@ -504,7 +509,7 @@ body{
 
 .interest .icon{
     font-size: 5rem;
-    transition: transform 0.3s ease;
+    transition: transform 0.3s ease, filter var(--theme-transition);
     flex-shrink: 0;
     filter: drop-shadow(0 4px 8px rgba(0,0,0,0.3));
 }
@@ -531,12 +536,14 @@ body{
     color: var(--text-primary);
     margin-bottom: 0.5rem;
     font-weight: 600;
+    transition: color var(--theme-transition);
 }
 
 .interest p{
     font-size: 1.1rem;
     color: var(--text-tertiary);
     font-weight: 300;
+    transition: color var(--theme-transition);
 }
 
 /* interest popup */
@@ -552,7 +559,7 @@ body{
     border-radius: 20px;
     opacity: 0;
     pointer-events: none;
-    transition: all 0.4s cubic-bezier(0.68,-0.55,0.265,1.55), background-color 0.4s cubic-bezier(0.4,0,0.2,1), color 0.4s cubic-bezier(0.4,0,0.2,1);
+    transition: all 0.4s cubic-bezier(0.68,-0.55,0.265,1.55), background-color var(--theme-transition), color var(--theme-transition);
     max-width: 600px;
     width: 90%;
     text-align: center;
@@ -592,7 +599,7 @@ body{
     font-size: 1.2rem;
     line-height: 1.6;
     color: var(--text-secondary);
-    transition: color 0.4s ease;
+    transition: color var(--theme-transition);
 }
 
 .skills-grid{
@@ -610,7 +617,7 @@ body{
     padding: 1.5rem 1rem;
     background: var(--skill-item-bg);
     border-radius: 12px;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease, background-color var(--theme-transition), border-color var(--theme-transition);
     border: 1px solid var(--border-color);
 }
 
@@ -630,7 +637,7 @@ body{
     font-size: 0.9rem;
     color: var(--text-secondary);
     font-weight: 500;
-    transition: color 0.4s ease;
+    transition: color var(--theme-transition);
 }
 
 .close-btn{
@@ -648,7 +655,7 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    transition: all 0.3s ease;
+    transition: all 0.3s ease, background-color var(--theme-transition), color var(--theme-transition);
     z-index: 1;
 }
 
@@ -658,10 +665,11 @@ body{
 }
 
 @media (max-width: 768px) {
-    .navbar{
-        gap: 0.75rem;
+    .theme-toggle{
+        width: 48px;
+        height: 48px;
     }
-    .theme-icon, .menu-toggle{
+    .menu-toggle{
         width: 48px;
         height: 48px;
     }
